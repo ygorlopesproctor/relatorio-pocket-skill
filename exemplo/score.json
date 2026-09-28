@@ -1,0 +1,17 @@
+{
+  "data": "setembro de 2026",
+  "total": 46, "zona": "Zona de risco",
+  "grupos": {"perfil": 11, "conteudo": 20, "conversao": 1, "google": 14},
+  "itens": {
+    "perfil":       {"pts": 11, "ig_profile": 55, "evidencia": "nome longo sem cidade, bio em lista com RQE cortado, 0 destaques, fixados de 2025 sem menopausa"},
+    "consistencia": {"pts": 10, "evidencia": "12 posts entre 07 e 24/09 (4,7/semana), último 24/09"},
+    "formato":      {"pts": 10, "evidencia": "7 vídeos em 12 (58%) + carrosséis"},
+    "automacao":    {"pts": 0,  "evidencia": "nenhuma chamada de palavra-chave nos 12 posts recentes"},
+    "captacao":     {"pts": 1,  "evidencia": "doctorcreator.short.gy -> WhatsApp fixo (63) 3322-5444"},
+    "site":         {"pts": 0,  "evidencia": "sem domínio próprio; drarafaela.com.br = domínio estacionado"},
+    "gmb":          {"pts": 4,  "evidencia": "ficha 'Dra. Rafaela Morais - Mastologista', categoria Médico, sem site"},
+    "avaliacoes":   {"pts": 7,  "evidencia": "55 avaliações, nota 4,5"},
+    "top10":        {"pts": 3,  "evidencia": "1/3: 3º em mastologista; fora em ginecologista menopausa e reposição hormonal"}
+  },
+  "extras_criticos": ["engajamento médio 0,32% nos 12 recentes", "0/12 posts chamam pra consulta", "busca 'Dra Rafaela Resende Palmas' não acha a ficha"]
+}

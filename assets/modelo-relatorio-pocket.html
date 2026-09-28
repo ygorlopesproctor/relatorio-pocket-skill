@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- ════════════════════════════════════════════════════════════════════
+     MOLDE · RELATÓRIO POCKET v2 · BLACK SALES (2 páginas)
+     ════════════════════════════════════════════════════════════════════
+     Pré-diagnóstico enviado ao médico prospect pelo SDR. Definido na reunião
+     comercial de 24/09/2026 (Ygor + Sodré): DUAS páginas só.
+       Pág 1 · O RAIO-X — score 0–100 sempre vermelho + antes/depois do perfil
+               (skill ig-profile) + 6–10 pontos críticos + o que já funciona.
+       Pág 2 · A REUNIÃO — vende a reunião: objetivo, como funciona, o que ele
+               vai ver ao vivo, prova e preparo (nutrição + comparecimento).
+               Sem data/hora da reunião e sem case de cliente (decisão do Ygor, 28/09/2026).
+
+     COMO USAR (humano ou IA):
+     1. Copie este arquivo para clientes/Prospecções/<slug>/pre-call/relatorio-pocket.html
+     2. Troque todo {{PLACEHOLDER}} por dado REAL das auditorias. Sem dado, sem afirmação.
+     3. Tokens de imagem (base64): __FOTO_B64__ (3×), __THUMB_1__..__THUMB_3__ (grid de hoje)
+        e __FIXADO_1__ / __FIXADO_3__ (fixados do depois que já existem).
+     4. Siga cada comentário "IA:". Datas só com MÊS e ANO (nunca o dia).
+     5. Rode: python -X utf8 .claude/skills/relatorio-pocket/scripts/render.py <html>
+        → PDF de 2 páginas + 1 PNG por página + checagem de estouro/placeholder.
+
+     REGRAS INEGOCIÁVEIS
+     · Folha fixa 900×1800 px. Estourou? CORTE TEXTO. Nunca aumente a folha nem mexa no CSS.
+     · Score vem da rubrica (references/score-presenca.md). A COR é sempre vermelha; o NÚMERO nunca é maquiado.
+     · Números do perfil (posts/seguidores/seguindo) iguais no antes e no depois.
+     · Concorrente SEM NOME — o nome é isca da reunião.
+     · Logo = MedCross oficial (symbol #medcross). Nunca desenhe outra.
+     ════════════════════════════════════════════════════════════════════ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pré-diagnóstico · {{NOME_CURTO}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0A0A0A; --panel:#141416; --panel-2:#1B1B1E; --line:#2A2A2F;
+  --white:#FFFFFF; --fog:#B4B4BC; --fog-2:#7A7A84;
+  --alarm:#FF3B3B; --alarm-2:#FF6B6B; --alarm-tint:rgba(255,59,59,.10); --alarm-line:rgba(255,59,59,.38);
+  --lime:#C6FF00; --lime-ink:#557000; --lime-tint:#F3FFD1;
+  --paper:#FFFFFF; --paper-2:#F3F4EF; --ink:#0A0A0A; --ink-2:#3F3F46; --ink-3:#71717A; --rule:#E4E4E7;
+  --ig-text:#000; --ig-2:#737373; --ig-link:#00376B; --ig-line:#DBDBDB;
+}
+@page{size:900px 1800px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#050505}
+body{font-family:'Inter',system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;text-rendering:optimizeLegibility}
+.page{width:900px;height:1800px;overflow:hidden;position:relative;margin:0 auto 24px;break-after:page;page-break-after:always}
+.page:last-of-type{break-after:auto;page-break-after:auto;margin-bottom:0}
+@media print{.page{margin:0}}
+body.solo .page{display:none;margin:0}
+body.solo .page.on{display:flex}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;text-wrap:balance}
+
+/* ═════ PÁGINA 1 · O RAIO-X (alarme) ═════ */
+.p1{background:var(--void);color:var(--white);padding:40px 48px 34px;display:flex;flex-direction:column}
+.p1::before{content:'';position:absolute;right:-220px;top:-160px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(255,59,59,.20) 0%,rgba(255,59,59,0) 62%);pointer-events:none}
+.top{display:flex;justify-content:space-between;align-items:center;position:relative}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:30px;height:30px}
+.brand .bw{font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:2.5px}
+.brand .bw b{color:var(--lime);font-weight:700}
+.top .meta{text-align:right;font-size:12.5px;line-height:1.45;color:var(--fog)}
+.top .meta b{color:var(--white);font-weight:600}
+
+.hero{display:grid;grid-template-columns:1fr 282px;gap:36px;margin-top:40px;position:relative}
+.who{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.ring{width:62px;height:62px;border-radius:50%;padding:3px;background:conic-gradient(var(--alarm),#FF8A3B,var(--alarm));flex:none}
+.ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--void);display:block}
+.who b{display:block;font-family:'Space Grotesk';font-size:19px;font-weight:600;letter-spacing:-.01em}
+.who span{font-size:13px;color:var(--fog)}
+.hero h1{font-size:40px;line-height:1.04;font-weight:700;letter-spacing:-.035em}
+.hero h1 .dim{color:var(--fog-2)}
+.hero .lede{margin-top:18px;font-size:16px;line-height:1.55;color:var(--fog);max-width:470px}
+.hero .lede b{color:var(--white);font-weight:600}
+
+.gauge{background:linear-gradient(180deg,#171719,#111113);border:1px solid var(--alarm-line);border-radius:22px;padding:20px 20px 18px;box-shadow:0 0 0 6px rgba(255,59,59,.05),0 30px 80px -30px rgba(255,59,59,.45)}
+.gauge .g-title{font-size:12.5px;color:var(--fog);text-align:center}
+.g-dial{position:relative;width:210px;height:176px;margin:4px auto 0}
+.g-dial svg{width:210px;height:210px;display:block}
+.g-read{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:26px}
+.g-num{font-family:'Space Grotesk';font-weight:700;font-size:82px;line-height:.9;letter-spacing:-.05em;color:var(--alarm);text-shadow:0 0 34px rgba(255,59,59,.55)}
+.g-of{font-family:'Space Grotesk';font-size:15px;color:var(--fog-2);margin-top:4px}
+.g-zone{display:flex;justify-content:center;margin-top:2px}
+.g-zone span{background:var(--alarm);color:#fff;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:999px;letter-spacing:.01em}
+.g-bars{list-style:none;margin-top:16px;display:grid;gap:9px}
+.g-bars li{display:grid;grid-template-columns:78px 1fr 42px;align-items:center;gap:10px;font-size:12.5px;color:var(--fog)}
+.g-bars i{display:block;height:6px;border-radius:9px;background:#2A2A2F;position:relative;overflow:hidden}
+.g-bars i::after{content:'';position:absolute;inset:0;width:calc(var(--v)*100%);min-width:3px;background:var(--alarm);border-radius:9px}
+.g-bars b{font-family:'Space Grotesk';color:var(--white);font-weight:600;text-align:right;font-size:13px}
+
+.ba{margin-top:38px;position:relative}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:18px}
+.sec-h h2{font-size:26px;font-weight:700;line-height:1.1}
+.sec-h p{font-size:13.5px;color:var(--fog);max-width:470px;line-height:1.5;text-align:right}
+.ba-grid{display:grid;grid-template-columns:1fr 44px 1fr;align-items:start}
+.ba-col .tag{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk';font-weight:600;font-size:14px;margin:0 0 10px 6px}
+.ba-col .tag::before{content:'';width:9px;height:9px;border-radius:50%}
+.now .tag{color:var(--alarm-2)} .now .tag::before{background:var(--alarm);box-shadow:0 0 12px var(--alarm)}
+.next .tag{color:var(--lime)} .next .tag::before{background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.ba-arrow{display:flex;align-items:center;justify-content:center;height:100%;padding-top:30px}
+.ba-arrow svg{width:30px;height:30px}
+
+.phone{background:#000;border-radius:30px;padding:9px;border:1px solid #33333a;box-shadow:0 24px 60px -20px rgba(0,0,0,.9)}
+.now .phone{box-shadow:0 0 0 1px rgba(255,59,59,.35),0 24px 60px -18px rgba(255,59,59,.35)}
+.next .phone{box-shadow:0 0 0 1px rgba(198,255,0,.35),0 24px 60px -18px rgba(198,255,0,.25)}
+.ig{background:#fff;border-radius:22px;overflow:hidden;color:var(--ig-text);font-size:12px;line-height:1.35;height:486px;position:relative}
+.ig-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 6px;font-weight:700;font-size:13.5px}
+.ig-bar .v{display:inline-block;width:13px;height:13px;border-radius:50%;background:#0095F6;vertical-align:-2px;margin-left:3px;position:relative}
+.ig-bar .v::after{content:'';position:absolute;left:4px;top:2.5px;width:3px;height:6px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
+.ig-bar .dots{letter-spacing:1px;color:#262626}
+.ig-head{display:flex;align-items:center;gap:18px;padding:4px 14px 6px}
+.ig-pic{width:58px;height:58px;border-radius:50%;overflow:hidden;flex:none;border:1px solid var(--ig-line)}
+.ig-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.ig-stats{display:flex;justify-content:space-around;flex:1;text-align:center}
+.ig-stats b{display:block;font-size:14px}
+.ig-stats span{font-size:11px;color:#262626}
+.ig-row{position:relative;margin:0 8px;padding:3px 22px 3px 6px;border-radius:7px}
+.ig-name{font-weight:700;font-size:12.5px}
+.ig-cat{color:var(--ig-2);font-size:11.5px}
+.ig-bio{white-space:pre-line}
+.ig-link{color:var(--ig-link);font-weight:600;display:flex;align-items:center;gap:5px}
+.ig-link svg{width:12px;height:12px}
+.ig-btns{display:flex;gap:6px;padding:8px 14px 4px}
+.ig-btns span{flex:1;text-align:center;background:#EFEFEF;border-radius:8px;padding:6px 0;font-weight:600;font-size:12px}
+.ig-btns span.pri{background:#0095F6;color:#fff}
+.ig-hl{display:flex;gap:6px;padding:8px 12px 10px;min-height:76px}
+.ig-hl div{width:60px;text-align:center;font-size:10.5px;color:#262626;white-space:nowrap}
+.ig-hl i{display:block;width:52px;height:52px;margin:0 auto 4px;border-radius:50%;border:1px solid var(--ig-line);padding:3px;margin-bottom:4px}
+.ig-hl i::after{content:'';display:block;width:100%;height:100%;border-radius:50%;background:#EFEFEF}
+.ig-hl.set i{border-color:#C9A79C}
+.ig-hl.set i::after{display:none}
+.ig-hl.set i b{display:flex;width:100%;height:100%;border-radius:50%;background:#1B1416;align-items:center;justify-content:center}
+.ig-hl.set i svg{width:20px;height:20px}
+.ig-hl.empty{align-items:center;justify-content:center;color:#A8A8A8;font-size:11px;font-style:italic}
+.ig-tabs{display:flex;border-top:1px solid var(--ig-line)}
+.ig-tabs span{flex:1;height:30px;display:flex;align-items:center;justify-content:center}
+.ig-tabs span:first-child{border-bottom:1.5px solid #000}
+.ig-tabs svg{width:15px;height:15px}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ig-grid .t{aspect-ratio:4/5;position:relative;overflow:hidden;background:#ddd}
+.ig-grid .t img{width:100%;height:100%;object-fit:cover;display:block}
+.ig-grid .t .ico{position:absolute;right:5px;top:5px;width:12px;height:12px}
+.cover{display:flex;flex-direction:column;justify-content:flex-end;padding:8px;font-family:'Space Grotesk';font-weight:700;font-size:13px;overflow-wrap:anywhere;line-height:1.02;letter-spacing:-.02em;color:#fff}
+.cover small{display:block;font-family:'Inter';font-weight:600;font-size:8.5px;letter-spacing:.02em;opacity:.8;margin-bottom:4px}
+
+/* marcações */
+.mk{position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;font-family:'Space Grotesk';font-weight:700;font-size:11.5px;display:flex;align-items:center;justify-content:center;z-index:3}
+.now .hit{outline:1.6px dashed var(--alarm);outline-offset:1px;background:rgba(255,59,59,.07)}
+.now .mk{background:var(--alarm);color:#fff;box-shadow:0 0 0 3px #fff}
+.next .hit{outline:1.6px solid #9CCB00;outline-offset:1px;background:rgba(198,255,0,.16)}
+.next .mk{background:var(--lime);color:#0A0A0A;box-shadow:0 0 0 3px #fff}
+.grid-hit{position:relative;margin:0 8px;border-radius:6px}
+.now .grid-hit{outline:1.6px dashed var(--alarm);outline-offset:2px}
+.next .grid-hit{outline:1.6px solid #9CCB00;outline-offset:2px}
+.grid-hit .mk{top:18px;transform:none;right:-7px}
+
+.notes{list-style:none;margin:12px 4px 0;display:grid;gap:6px}
+.notes li{display:grid;grid-template-columns:20px 1fr;gap:9px;font-size:12.5px;line-height:1.42;color:var(--fog)}
+.notes li b{color:var(--white);font-weight:600}
+.notes .n{width:20px;height:20px;border-radius:50%;font-family:'Space Grotesk';font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:-1px}
+.now .notes .n{background:var(--alarm);color:#fff}
+.next .notes .n{background:var(--lime);color:#0A0A0A}
+
+.alerts{margin-top:34px}
+.alerts .sec-h{margin-bottom:12px}
+.alerts .sec-h h2{white-space:nowrap}
+.alerts .sec-h p{max-width:330px}
+.alerts .sec-h h2 .c{color:var(--alarm)}
+.al-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.al-col h3{font-size:14px;font-weight:600;color:var(--fog);margin:0 0 9px 2px;display:flex;align-items:center;gap:8px}
+.al-col h3 svg{width:15px;height:15px}
+.al{display:grid;grid-template-columns:26px 1fr auto;gap:11px;align-items:start;background:var(--alarm-tint);border:1px solid var(--alarm-line);border-left:3px solid var(--alarm);border-radius:12px;padding:9px 14px 9px 12px;margin-bottom:7px}
+.al svg{width:24px;height:24px;margin-top:2px}
+.al b{display:block;font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin-bottom:2px}
+.al p{font-size:12.5px;line-height:1.35;color:var(--fog);white-space:nowrap}
+.al .v{font-family:'Space Grotesk';font-weight:700;font-size:17px;color:var(--alarm-2);white-space:nowrap;text-align:right;line-height:1.1;padding-top:1px}
+.al .v small{display:block;font-family:'Inter';font-weight:500;font-size:10px;color:var(--fog-2)}
+
+.bridge{margin-top:auto;padding-top:22px;display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.good{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:15px 18px;font-size:13px;line-height:1.5;color:var(--fog)}
+.good b{color:var(--lime);font-weight:600}
+.good strong{color:var(--white);font-weight:600}
+.turn{background:var(--lime);color:var(--void);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.turn p{font-family:'Space Grotesk';font-weight:700;font-size:16px;line-height:1.2;letter-spacing:-.01em}
+.turn svg{width:26px;height:26px;flex:none}
+
+/* ═════ PÁGINA 2 · A REUNIÃO (virada) ═════ */
+.p2{background:var(--paper);color:var(--ink);padding:40px 48px 26px;display:flex;flex-direction:column}
+.p2 .top .meta{color:var(--ink-3)} .p2 .top .meta b{color:var(--ink)}
+.chip{display:flex;align-items:center;gap:10px;background:var(--void);padding:8px 14px 8px 9px;border-radius:12px}
+.chip .bw{color:#fff}
+.p2 h1{font-size:46px;line-height:1.02;font-weight:700;letter-spacing:-.035em;margin-top:40px;max-width:760px}
+.p2 .lede{font-size:16.5px;line-height:1.55;color:var(--ink-2);margin-top:16px;max-width:680px}
+
+.ticket{margin-top:30px;display:grid;grid-template-columns:1fr 250px;background:var(--void);color:#fff;border-radius:22px;position:relative;overflow:hidden}
+.ticket::before{content:'';position:absolute;right:-120px;bottom:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(198,255,0,.22),rgba(198,255,0,0) 65%)}
+.tk-main{padding:26px 30px 26px;position:relative}
+.tk-main .l{font-size:13px;color:var(--fog)}
+.tk-main .l b{color:var(--lime);font-weight:600}
+.tk-date{font-family:'Space Grotesk';font-weight:700;font-size:46px;line-height:1;letter-spacing:-.04em;margin-top:10px}
+.tk-sub{display:flex;gap:18px;margin-top:14px;font-size:14px;color:#E4E4E7}
+.tk-sub span{display:flex;align-items:center;gap:7px}
+.tk-sub svg{width:16px;height:16px}
+.tk-stub{border-left:2px dashed #3A3A40;padding:26px 24px;position:relative}
+.tk-stub::before,.tk-stub::after{content:'';position:absolute;left:-15px;width:28px;height:28px;border-radius:50%;background:var(--paper)}
+.tk-stub::before{top:-14px} .tk-stub::after{bottom:-14px}
+.tk-stub .l{font-size:12.5px;color:var(--fog);margin-bottom:12px}
+.host{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.host i{width:40px;height:40px;border-radius:50%;background:#1F1F23;border:1.5px solid var(--lime);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--lime);flex:none;overflow:hidden}
+.host i img{width:100%;height:100%;object-fit:cover}
+.host b{display:block;font-family:'Space Grotesk';font-size:15px;font-weight:600}
+.host span{font-size:11.5px;color:var(--fog)}
+
+.goal{margin-top:30px;display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start;border-top:1px solid var(--rule);padding-top:24px}
+.goal h2,.how h2,.live h2,.prep h2{font-size:21px;font-weight:700;line-height:1.15}
+.goal p{font-family:'Space Grotesk';font-size:22px;font-weight:500;line-height:1.32;letter-spacing:-.015em}
+.goal p mark{background:var(--lime);color:var(--ink);padding:0 4px;border-radius:4px}
+
+.how{margin-top:28px;border-top:1px solid var(--rule);padding-top:24px}
+.how-h{display:flex;justify-content:space-between;align-items:baseline}
+.how-h span{font-size:13px;color:var(--ink-3)}
+.bar{display:flex;height:10px;border-radius:9px;overflow:hidden;margin:16px 0 14px;gap:3px}
+.bar i{display:block;background:var(--ink)}
+.bar i:nth-child(2){background:#3a3a3a}.bar i:nth-child(3){background:#6b6b6b}.bar i:nth-child(4){background:var(--lime)}
+.steps{display:grid;grid-template-columns:10fr 15fr 10fr 8fr;gap:14px}
+.step .m{font-family:'Space Grotesk';font-weight:700;font-size:13px;color:var(--ink-3)}
+.step h3{font-size:16.5px;font-weight:700;margin:4px 0 5px;line-height:1.2}
+.step p{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+
+.live{margin-top:28px;border-top:1px solid var(--rule);padding-top:24px}
+.live-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.live-h span{font-size:13px;color:var(--ink-3)}
+.lv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lv-i{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:center;background:var(--paper-2);border-radius:16px;padding:12px;min-height:116px}
+.thumb{height:92px;border-radius:11px;background:var(--void);position:relative;overflow:hidden}
+.thumb .blur{position:absolute;inset:0;filter:blur(3.2px);opacity:.9}
+.thumb .lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.thumb .lock span{width:34px;height:34px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.thumb .lock svg{width:16px;height:16px}
+.lv-i b{display:block;font-family:'Space Grotesk';font-size:15.5px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.lv-i p{font-size:12.5px;line-height:1.42;color:var(--ink-2)}
+
+.proof{margin-top:26px;background:var(--void);color:#fff;border-radius:18px;padding:18px 24px;display:grid;grid-template-columns:auto auto 1fr;gap:28px;align-items:center}
+.proof .k b{display:block;font-family:'Space Grotesk';font-weight:700;font-size:30px;letter-spacing:-.03em;color:var(--lime);line-height:1}
+.proof .k span{font-size:12px;color:var(--fog)}
+.proof blockquote{border-left:2px solid #3A3A40;padding-left:20px;font-size:13.5px;line-height:1.5;color:#E4E4E7}
+.proof blockquote b{color:#fff}
+
+.prep{margin-top:26px;display:grid;grid-template-columns:1fr 330px;gap:24px;align-items:stretch}
+.prep ul{list-style:none;margin-top:12px;display:grid;gap:9px}
+.prep li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.prep li b{color:var(--ink);font-weight:600}
+.prep li i{width:22px;height:22px;border-radius:6px;background:var(--lime);display:flex;align-items:center;justify-content:center;margin-top:-1px}
+.prep li i svg{width:13px;height:13px}
+.cta{background:var(--lime);border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.cta p{font-family:'Space Grotesk';font-weight:700;font-size:19px;line-height:1.2;letter-spacing:-.015em}
+.tagv{position:absolute;left:5px;bottom:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Inter';font-weight:600;font-size:8.5px;padding:2px 6px;border-radius:4px}
+.bubble{align-self:flex-start;white-space:nowrap;background:#fff;color:var(--ink);border-radius:14px 14px 14px 4px;padding:11px 14px;font-size:14.5px;font-weight:500;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.bubble small{display:block;font-size:10.5px;color:var(--ink-3);text-align:right;margin-top:3px}
+.proof .m{font-size:13.5px;line-height:1.5;color:#E4E4E7;border-left:2px solid #3A3A40;padding-left:20px}
+.proof .m b{color:#fff}
+.cta a{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--void);color:#fff;text-decoration:none;font-family:'Space Grotesk';font-weight:700;font-size:15.5px;padding:14px 16px;border-radius:12px}
+.cta a svg{width:17px;height:17px}
+.cta small{font-size:12px;color:#2F3A00;line-height:1.4}
+
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="medcross" viewBox="0 0 200 200">
+      <line x1="100" y1="2" x2="100" y2="198" stroke="currentColor" stroke-width="1.5" opacity="0.08"/>
+      <line x1="2" y1="100" x2="198" y2="100" stroke="currentColor" stroke-width="1.5" opacity="0.08"/>
+      <path d="M100 85 C80 55, 75 25, 88 15 C100 5, 115 12, 115 30 C115 48, 108 68, 100 85" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <path d="M115 100 C145 80, 175 75, 185 88 C195 100, 188 115, 170 115 C152 115, 132 108, 115 100" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <path d="M100 115 C120 145, 125 175, 112 185 C100 195, 85 188, 85 170 C85 152, 92 132, 100 115" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <path d="M85 100 C55 120, 25 125, 15 112 C5 100, 12 85, 30 85 C48 85, 68 92, 85 100" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <circle cx="100" cy="100" r="12" fill="currentColor"/>
+      <circle cx="88" cy="15" r="7" fill="currentColor"/><circle cx="185" cy="88" r="7" fill="currentColor"/>
+      <circle cx="112" cy="185" r="7" fill="currentColor"/><circle cx="15" cy="112" r="7" fill="currentColor"/>
+      <circle cx="115" cy="30" r="5" fill="currentColor"/><circle cx="170" cy="115" r="5" fill="currentColor"/>
+      <circle cx="85" cy="170" r="5" fill="currentColor"/><circle cx="30" cy="85" r="5" fill="currentColor"/>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 24 24"><path d="M12 3.2 22 20.5H2L12 3.2Z" fill="#FF3B3B"/><path d="M12 9.5v5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.25" fill="#fff"/></symbol>
+    <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="#0A0A0A"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="#0A0A0A" stroke-width="2.2" fill="none"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19.5 7" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="carousel" viewBox="0 0 24 24"><rect x="7" y="3" width="14" height="14" rx="2" fill="#fff"/><path d="M4 7v12a2 2 0 0 0 2 2h12" stroke="#fff" stroke-width="2" fill="none"/></symbol>
+    <symbol id="reel" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#fff" stroke-width="2"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="#fff"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M15 3l6 6-3 1-4 4 .5 4.5L13 20l-4-4-5 5-1-1 5-5-4-4 1.5-1.5L10 10l4-4 1-3Z" fill="#fff"/></symbol>
+    <symbol id="linkic" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" stroke="#00376B" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="hl-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2.5" stroke="#F3E6DF" stroke-width="1.8" fill="none"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" stroke="#F3E6DF" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="hl-star" viewBox="0 0 24 24"><path d="m12 4 2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6L12 4Z" stroke="#F3E6DF" stroke-width="1.7" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="hl-heart" viewBox="0 0 24 24"><path d="M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 4.9-7 9.2-7 9.2Z" stroke="#F3E6DF" stroke-width="1.7" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="hl-ribbon" viewBox="0 0 24 24"><path d="M12 4.5c2 0 3.3 1.5 3.3 3.3 0 2.4-2 4.6-3.3 6.2-1.3-1.6-3.3-3.8-3.3-6.2 0-1.8 1.3-3.3 3.3-3.3ZM10 12.5 6.5 19.5M14 12.5l3.5 7" stroke="#F3E6DF" stroke-width="1.7" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="hl-user" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.6" stroke="#F3E6DF" stroke-width="1.7" fill="none"/><path d="M5.5 19.5c1.2-3.3 3.6-4.8 6.5-4.8s5.3 1.5 6.5 4.8" stroke="#F3E6DF" stroke-width="1.7" fill="none" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════════════ PÁGINA 1 · O RAIO-X ═══════════════════
+     IA: a página 1 tem UM trabalho: alarmar com prova. Ordem fixa —
+     score vermelho → antes/depois do perfil → pontos críticos → o que já funciona.
+     Tudo o que aparece aqui saiu das auditorias (auditorias/*.json). Sem dado, sem afirmação. -->
+<section class="page p1" id="p1">
+  <header class="top">
+    <div class="brand"><svg style="color:#C6FF00"><use href="#medcross"/></svg><span class="bw">BLACK <b>SALES</b></span></div>
+    <div class="meta"><b>Pré-diagnóstico digital</b><br>feito em {{MES_ANO — ex: setembro de 2026}} · confidencial</div>
+  </header>
+
+  <div class="hero">
+    <div>
+      <div class="who">
+        <!-- IA: foto = profile_pic_url_hd baixada e embutida em base64 (token __FOTO_B64__, 3 lugares no arquivo). -->
+        <div class="ring"><img src="data:image/jpeg;base64,__FOTO_B64__" alt=""></div>
+        <div><b>{{NOME_CURTO — ex: Dra. Rafaela Resende}}</b><span>{{ESPECIALIDADE}} · {{CIDADE-UF}} · {{CRM}}</span></div>
+      </div>
+      <!-- IA: HEADLINE = a leitura de POSICIONAMENTO. É o que prende o médico. Fórmula:
+           [ativo real que ele já tem] + <span class="dim">[o furo que esse ativo não resolve]</span>.
+           Ex: "6.909 mulheres te seguem. <dim>No Google, quem elas encontram é outra médica.</dim>"
+           Máx ~95 caracteres. Número real sempre. Aspas curvas “assim”, nunca retas. Nunca genérico ("sua presença digital precisa melhorar"). -->
+      <h1>{{HEADLINE_PARTE_1}} <span class="dim">{{HEADLINE_PARTE_2}}</span></h1>
+      <!-- IA: LEDE = 1 elogio verdadeiro ao posicionamento (com o vocabulário DELE entre aspas)
+           + onde ele trava. Máx 3 linhas (~230 caracteres). -->
+      <p class="lede">{{LEDE_POSICIONAMENTO}}</p>
+    </div>
+    <aside class="gauge">
+      <div class="g-title">Score de presença digital</div>
+      <div class="g-dial">
+        <svg viewBox="0 0 210 210">
+          <circle cx="105" cy="105" r="88" fill="none" stroke="#26262B" stroke-width="14" stroke-linecap="round" stroke-dasharray="414.7 552.9" transform="rotate(135 105 105)"/>
+          <!-- IA: 1º número do dasharray = 414.7 × SCORE ÷ 100 (ex: score 12 → 49.8; score 34 → 141.0). O 2º fica 552.9. -->
+          <circle cx="105" cy="105" r="88" fill="none" stroke="#FF3B3B" stroke-width="14" stroke-linecap="round" stroke-dasharray="{{ARCO}} 552.9" transform="rotate(135 105 105)" style="filter:drop-shadow(0 0 7px rgba(255,59,59,.8))"/>
+        </svg>
+        <div class="g-read"><div class="g-num">{{SCORE}}</div><div class="g-of">de 100</div></div>
+      </div>
+      <!-- IA: 0–39 "Zona crítica" · 40–59 "Zona de risco" · 60+ "Abaixo do potencial". A cor é SEMPRE vermelha. -->
+      <div class="g-zone"><span>{{ZONA}}</span></div>
+      <!-- IA: --v = pontos ÷ máximo do grupo (ex: 8/20 → .40). Conta em references/score-presenca.md. -->
+      <ul class="g-bars">
+        <li><span>Perfil</span><i style="--v:{{V_PERFIL}}"></i><b>{{PERFIL}}/20</b></li>
+        <li><span>Conteúdo</span><i style="--v:{{V_CONTEUDO}}"></i><b>{{CONTEUDO}}/20</b></li>
+        <li><span>Conversão</span><i style="--v:{{V_CONVERSAO}}"></i><b>{{CONVERSAO}}/20</b></li>
+        <li><span>Google</span><i style="--v:{{V_GOOGLE}}"></i><b>{{GOOGLE}}/40</b></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- ─── ANTES × DEPOIS DO PERFIL (skill ig-profile) ───
+       IA: o "Hoje" reproduz o perfil REAL, campo por campo, com os dados do scraping
+       (nome, bio literal com emojis, link, nº de posts/seguidores/seguindo, 3 posts do topo do grid).
+       O "Reposicionado" é a reescrita da ig-profile: nome (≤30 caracteres, com o termo que a paciente
+       busca + cidade), bio (linha 1 = pra quem + o que muda; linha 2 = prova/voz dele), link com rótulo
+       de ação, 4–5 destaques com nome de pergunta, 3 posts fixados com capa de ≤4 palavras.
+       Os números (posts/seguidores/seguindo) são OS MESMOS nos dois lados — o depois não inventa crescimento.
+       As marcações 1-4 do Hoje apontam o problema; as 1-4 do Reposicionado, a correção do MESMO campo. -->
+  <section class="ba">
+    <div class="sec-h">
+      <h2>Seu perfil, antes e depois</h2>
+      <p>Uma paciente leva 3 segundos pra decidir se você é a médica dela. À esquerda, o que ela vê hoje. À direita, o mesmo perfil reposicionado.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-col now">
+        <div class="tag">Hoje</div>
+        <div class="phone"><div class="ig">
+          <div class="ig-bar"><span>{{HANDLE_SEM_ARROBA}}</span><span class="dots">•••</span></div>
+          <div class="ig-head">
+            <div class="ig-pic"><img src="data:image/jpeg;base64,__FOTO_B64__" alt=""></div>
+            <div class="ig-stats"><div><b>{{POSTS}}</b><span>posts</span></div><div><b>{{SEGUIDORES}}</b><span>seguidores</span></div><div><b>{{SEGUINDO}}</b><span>seguindo</span></div></div>
+          </div>
+          <div class="ig-row ig-name hit">{{NOME_EXIBIDO_ATUAL}}<span class="mk">1</span></div>
+          <div class="ig-row ig-bio hit">{{BIO_ATUAL_LITERAL}}<span class="mk">2</span></div>
+          <div class="ig-row ig-link hit"><svg><use href="#linkic"/></svg>{{LINK_ATUAL — ex: bio.site/fulana; se não houver: "sem link"}}<span class="mk">3</span></div>
+          <div class="ig-btns"><span class="pri">Seguir</span><span>Mensagem</span></div>
+          <!-- IA: destaques de hoje. 0 destaques → deixe como está. Se TIVER destaques e você não souber
+               os nomes, troque por <div class="ig-hl"> com N (máx 5) <div><i></i>·····</div>. Nunca invente nome. -->
+          <div class="ig-hl empty">sem destaques organizados</div>
+          <!-- IA: os 3 primeiros posts do grid DE VERDADE (thumbnail_src do scraping, base64). Se o 1º for
+               fixado, mantenha o ícone #pin; senão use #carousel ou #reel conforme o tipo. -->
+          <div class="grid-hit"><div class="ig-grid">
+            <div class="t"><img src="data:image/jpeg;base64,__THUMB_1__" alt=""><svg class="ico"><use href="#carousel"/></svg></div>
+            <div class="t"><img src="data:image/jpeg;base64,__THUMB_2__" alt=""><svg class="ico"><use href="#carousel"/></svg></div>
+            <div class="t"><img src="data:image/jpeg;base64,__THUMB_3__" alt=""><svg class="ico"><use href="#reel"/></svg></div>
+          </div><span class="mk">4</span></div>
+        </div></div>
+        <!-- IA: 4 notas em UMA linha cada (~50 caracteres). Negrito = o problema; resto = a consequência. -->
+        <ul class="notes">
+          <li><span class="n">1</span><span><b>{{PROBLEMA_NOME}}</b> {{CONSEQUENCIA}}</span></li>
+          <li><span class="n">2</span><span><b>{{PROBLEMA_BIO}}</b> {{CONSEQUENCIA}}</span></li>
+          <li><span class="n">3</span><span><b>{{PROBLEMA_LINK}}</b> {{CONSEQUENCIA}}</span></li>
+          <li><span class="n">4</span><span><b>{{PROBLEMA_GRID}}</b> {{CONSEQUENCIA}}</span></li>
+        </ul>
+      </div>
+
+      <div class="ba-arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" stroke="#C6FF00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="ba-col next">
+        <div class="tag">Reposicionado</div>
+        <div class="phone"><div class="ig">
+          <div class="ig-bar"><span>{{HANDLE_SEM_ARROBA}}</span><span class="dots">•••</span></div>
+          <div class="ig-head">
+            <div class="ig-pic"><img src="data:image/jpeg;base64,__FOTO_B64__" alt=""></div>
+            <div class="ig-stats"><div><b>{{POSTS}}</b><span>posts</span></div><div><b>{{SEGUIDORES}}</b><span>seguidores</span></div><div><b>{{SEGUINDO}}</b><span>seguindo</span></div></div>
+          </div>
+          <!-- IA: TUDO deste celular sai da skill ig-profile (invocar via Skill tool, nunca improvisar):
+               nome = a opção recomendada (≤30 caracteres) · bio = a reescrita (≤150, com CRM + RQE completos) ·
+               link = rótulo de ação · destaques · fixados. Bio ≤3 linhas no celular ou empurra o grid pra fora. -->
+          <div class="ig-row ig-name hit">{{NOME_NOVO}}<span class="mk">1</span></div>
+          <div class="ig-row ig-bio hit">{{BIO_NOVA_LINHA_1}}
+{{BIO_NOVA_LINHA_2}}<span class="mk">2</span></div>
+          <div class="ig-row ig-link hit"><svg><use href="#linkic"/></svg>{{ROTULO_LINK_NOVO — ex: Agende sua avaliação íntima}}<span class="mk">3</span></div>
+          <div class="ig-btns"><span class="pri">Seguir</span><span>Mensagem</span><span>Agendar</span></div>
+          <!-- IA: 5 destaques com nome de PERGUNTA de paciente (≤10 caracteres cada). Ícones disponíveis:
+               #hl-cal #hl-star #hl-heart #hl-ribbon #hl-user — escolha o que casa com o nome. -->
+          <div class="ig-hl set"><div><i><b><svg><use href="#hl-cal"/></svg></b></i>{{DESTAQUE_1}}</div><div><i><b><svg><use href="#hl-star"/></svg></b></i>{{DESTAQUE_2}}</div><div><i><b><svg><use href="#hl-heart"/></svg></b></i>{{DESTAQUE_3}}</div><div><i><b><svg><use href="#hl-ribbon"/></svg></b></i>{{DESTAQUE_4}}</div><div><i><b><svg><use href="#hl-user"/></svg></b></i>{{DESTAQUE_5}}</div></div>
+          <!-- IA: os 3 FIXADOS da reescrita da ig-profile, cada um com um trabalho: (1) a história/apresentação,
+               (2) como funciona o tratamento-bandeira, (3) a prova (o post que mais performou).
+               Post que JÁ EXISTE: thumbnail real (img base64) + .tagv com o número real ("2,5 mil reproduções").
+               Post que PRECISA SER CRIADO: capa desenhada (.t.cover) com small "NOVO POST" + no máximo 4 palavras curtas
+               (palavra longa estoura o quadro). Pode trocar qualquer um dos 3 entre img e .cover. -->
+          <div class="grid-hit"><div class="ig-grid">
+            <div class="t"><img src="data:image/jpeg;base64,__FIXADO_1__" alt=""><svg class="ico"><use href="#pin"/></svg><span class="tagv">{{NUMERO_REAL_1 — ex: 1.597 curtidas}}</span></div>
+            <div class="t cover" style="background:#2A1B1F"><svg class="ico"><use href="#pin"/></svg><small>NOVO POST</small>{{CAPA_FIXADO_2 — ex: Menopausa: como eu cuido}}</div>
+            <div class="t"><img src="data:image/jpeg;base64,__FIXADO_3__" alt=""><svg class="ico"><use href="#pin"/></svg><span class="tagv">{{NUMERO_REAL_3 — ex: 2,5 mil reproduções}}</span></div>
+          </div><span class="mk">4</span></div>
+        </div></div>
+        <ul class="notes">
+          <li><span class="n">1</span><span><b>{{CORRECAO_NOME}}</b></span></li>
+          <li><span class="n">2</span><span><b>{{CORRECAO_BIO}}</b> {{DETALHE}}</span></li>
+          <li><span class="n">3</span><span><b>{{CORRECAO_LINK}}</b> {{DETALHE}}</span></li>
+          <li><span class="n">4</span><span><b>{{CORRECAO_FIXADOS}}</b> {{DETALHE}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PONTOS CRÍTICOS ───
+       IA: padrão = 8 cards (4 Instagram + 4 Google e internet), na ordem abaixo. Mínimo 6, máximo 10,
+       sempre número PAR (duas colunas iguais). Só entra item que está REALMENTE ruim — se o médico tem site
+       bom, troque o card por outro problema real (página do tratamento, stories, Doctoralia, WhatsApp fixo...).
+       Texto do <p> em UMA linha (≤42 caracteres). .v = o número que dói + unidade no <small>.
+       Atualize o "8" do título pra quantidade real. -->
+  <section class="alerts">
+    <div class="sec-h">
+      <h2><span class="c">{{N}} pontos críticos</span> encontrados</h2>
+      <p>Em cada um, a paciente chega, não acha o próximo passo e vai embora.</p>
+    </div>
+    <div class="al-cols">
+      <div class="al-col">
+        <h3>Instagram</h3>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Consistência de postagem</b><p>{{EVIDENCIA — ex: 1 post por semana. Parado há 32 dias.}}</p></div><div class="v">{{NUM}}<small>{{UNIDADE}}</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Formato de conteúdo</b><p>{{EVIDENCIA — ex: 92% carrossel. O reel alcançou 23× mais.}}</p></div><div class="v">{{NUM}}<small>{{UNIDADE}}</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Automação</b><p>{{EVIDENCIA — ex: Nenhum comentário vira conversa sozinho.}}</p></div><div class="v">0<small>automações</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Captação de pacientes</b><p>{{EVIDENCIA — ex: Quem clica não deixa nome nem WhatsApp.}}</p></div><div class="v">0<small>contatos</small></div></div>
+      </div>
+      <div class="al-col">
+        <h3>Google e internet</h3>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Site próprio</b><p>{{EVIDENCIA}}</p></div><div class="v">{{NUM}}<small>{{UNIDADE}}</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Google Meu Negócio</b><p>{{EVIDENCIA}}</p></div><div class="v">{{NUM}}<small>{{UNIDADE}}</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Avaliações no Google</b><p>{{EVIDENCIA}}</p></div><div class="v">{{NUM}}<small>avaliações</small></div></div>
+        <div class="al"><svg><use href="#warn"/></svg><div><b>Top 10 do Google</b><p>{{EVIDENCIA — ex: Fora das 3 buscas que trazem paciente.}}</p></div><div class="v">{{X}}/{{N}}<small>buscas</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA: o elogio verdadeiro (o post/reel que JÁ funcionou, com número) — diagnóstico 100% pancada perde
+       o médico. Máx 3 linhas. O card lime chama pra página 2. -->
+  <div class="bridge">
+    <div class="good"><b>O que já funciona:</b> {{ELOGIO_COM_NUMERO — ex: o post em que você contou a sua história fez <strong>7% de engajamento, 30× a média</strong> dos posts clínicos.}} A audiência existe. Falta o caminho até a agenda.</div>
+    <div class="turn"><p>Na próxima página: o que muda na reunião com os sócios.</p><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" stroke="#0A0A0A" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PÁGINA 2 · A REUNIÃO ═══════════════════
+     IA: a página 2 VENDE A REUNIÃO: nutre, gera antecipação e faz o médico aparecer.
+     Ordem fixa: promessa → ingresso (quem atende) → objetivo → como vai funcionar →
+     o que ele vai ver ao vivo (cadeado) → prova → preparo + próximo passo.
+     SEM data e hora da reunião (a equipe não sabe quando o pocket é gerado) e SEM case de cliente.
+     Serve igual pra reunião já marcada ou ainda por marcar. -->
+<section class="page p2" id="p2">
+  <header class="top">
+    <div class="chip"><svg style="color:#C6FF00;width:26px;height:26px"><use href="#medcross"/></svg><span class="bw" style="font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:2.5px">BLACK <b style="color:#C6FF00">SALES</b></span></div>
+    <div class="meta"><b>Parte 2 de 2</b><br>a sua reunião de diagnóstico</div>
+  </header>
+
+  <h1>Na reunião, os sócios te mostram como sair da zona vermelha em 90 dias.</h1>
+  <p class="lede">{{TRATAMENTO — ex: Dra. Rafaela}}, a página anterior é um recorte. Na conversa a gente abre o diagnóstico inteiro, com nome, número e o passo a passo pensado pro seu consultório.</p>
+
+  <div class="ticket">
+    <div class="tk-main">
+      <div class="l">Sua reunião de diagnóstico · <b>{{NOME_CURTO}}</b></div>
+      <div class="tk-date">Com os sócios, ao vivo</div>
+      <div class="tk-sub">
+        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#C6FF00" stroke-width="2" fill="none"/><path d="M12 7v5l3 2" stroke="#C6FF00" stroke-width="2" fill="none" stroke-linecap="round"/></svg>40 minutos</span>
+        <span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5" stroke="#C6FF00" stroke-width="2" fill="none"/><path d="M16 10.5 21 8v8l-5-2.5" stroke="#C6FF00" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>online, pelo Google Meet</span>
+      </div>
+    </div>
+    <div class="tk-stub">
+      <div class="l">Quem vai te atender</div>
+      <!-- IA: se existir assets/socios/ygor.jpg ou sodre.jpg na skill, troque as iniciais pela foto em base64 -->
+      <div class="host"><i>YL</i><div><b>Ygor Lopes</b><span>fundador · Black Sales</span></div></div>
+      <div class="host"><i>SM</i><div><b>Sodré Monteiro</b><span>sócio · Black Sales</span></div></div>
+    </div>
+  </div>
+
+  <section class="goal">
+    <h2>O objetivo</h2>
+    <!-- IA: o tratamento-bandeira DELE (o high-ticket que ele mais quer vender). -->
+    <p>Você sair com um <mark>plano de 90 dias</mark> pra encher a agenda de consultas particulares e vender mais {{PROCEDIMENTO_BANDEIRA}}, com marketing e atendimento puxando pro mesmo lado.</p>
+  </section>
+
+  <section class="how">
+    <div class="how-h"><h2>Como vai funcionar</h2><span>40 minutos, em 4 partes</span></div>
+    <div class="bar"><i style="flex:10"></i><i style="flex:15"></i><i style="flex:10"></i><i style="flex:5"></i></div>
+    <div class="steps">
+      <div class="step"><div class="m">10 min</div><h3>O raio-x completo</h3><p>Instagram, Google e o caminho da paciente até agendar, com os dados que ficaram de fora daqui.</p></div>
+      <div class="step"><div class="m">15 min</div><h3>O plano de 90 dias</h3><p>Frente por frente: o que fazer primeiro, o que vem no mês 2 e no mês 3, e quem faz cada parte.</p></div>
+      <div class="step"><div class="m">10 min</div><h3>A projeção</h3><p>O que isso pode virar na sua agenda, com a conta feita em cima dos seus números.</p></div>
+      <div class="step"><div class="m">5 min</div><h3>Suas perguntas</h3><p>Você sai sabendo o que fazer, seguindo com a gente ou não.</p></div>
+    </div>
+  </section>
+
+  <!-- IA: o cadeado. Itens 1-3 são fixos. O 4º é o GANCHO DE CALENDÁRIO do mês (Outubro Rosa, Novembro Azul,
+       Black Friday, Dia das Mães, Verão...) casado com a especialidade dele — gera urgência sem inventar nada.
+       Só cite o que a equipe realmente leva pronta pra call. -->
+  <section class="live">
+    <div class="live-h"><h2>O que você vai ver ao vivo</h2><span>já está pronto, esperando a reunião</span></div>
+    <div class="lv">
+      <div class="lv-i"><div class="thumb"><div class="blur" style="background:linear-gradient(160deg,#2A1B1F,#0A0A0A);"><div style="margin:16px 14px;height:9px;width:60%;background:#C6FF00;border-radius:4px"></div><div style="margin:0 14px 6px;height:6px;width:80%;background:#555;border-radius:4px"></div><div style="margin:0 14px;height:6px;width:50%;background:#555;border-radius:4px"></div></div><div class="lock"><span><svg><use href="#lock"/></svg></span></div></div><div><b>Seu perfil reescrito por inteiro</b><p>Nome, bio, destaques e as 3 capas fixadas, prontos pra colar.</p></div></div>
+      <div class="lv-i"><div class="thumb"><div class="blur" style="background:#fff"><div style="margin:14px 12px 7px;height:7px;width:70%;background:#1a0dab;border-radius:4px"></div><div style="margin:0 12px 12px;height:5px;width:85%;background:#bbb;border-radius:4px"></div><div style="margin:0 12px 7px;height:7px;width:60%;background:#1a0dab;border-radius:4px"></div><div style="margin:0 12px;height:5px;width:75%;background:#bbb;border-radius:4px"></div></div><div class="lock"><span><svg><use href="#lock"/></svg></span></div></div><div><b>Quem está ocupando as suas buscas</b><p>Com nome, endereço e o que fazem que você ainda não faz.</p></div></div>
+      <div class="lv-i"><div class="thumb"><div class="blur" style="background:#0A0A0A"><div style="margin:14px 30px 6px 10px;height:14px;background:#2a2a2a;border-radius:8px"></div><div style="margin:0 10px 6px 30px;height:14px;background:#C6FF00;border-radius:8px"></div><div style="margin:0 30px 0 10px;height:14px;background:#2a2a2a;border-radius:8px"></div></div><div class="lock"><span><svg><use href="#lock"/></svg></span></div></div><div><b>A automação que vira consulta</b><p>A paciente comenta uma palavra e recebe o caminho do agendamento no direct.</p></div></div>
+      <div class="lv-i"><div class="thumb"><div class="blur" style="background:{{COR_GANCHO — ex: #FFE4EC (rosa) / #E3F0FF (azul) / #111 (Black Friday)}}"><div style="margin:14px auto 0;width:36px;height:36px;border-radius:50%;border:7px solid {{COR_FORTE_GANCHO — ex: #E91E63}}"></div></div><div class="lock"><span><svg><use href="#lock"/></svg></span></div></div><div><b>{{TITULO_GANCHO — ex: Sua campanha de Outubro Rosa}}</b><p>{{DESCRICAO_GANCHO — ex: O mês mais forte do ano pra mastologia, com o calendário pronto pra usar.}}</p></div></div>
+    </div>
+  </section>
+
+  <!-- IA: números oficiais da Black Sales (slide de autoridade do deck). Não cite case de cliente aqui. -->
+  <div class="proof">
+    <div class="k"><b>R$ 12 mi+</b><span>gerados para clientes</span></div>
+    <div class="k"><b>45+</b><span>clínicas e negócios</span></div>
+    <div class="m"><b>O método Black Sales</b> junta marketing e atendimento pra transformar quem te segue e quem te procura no Google em consulta particular.</div>
+  </div>
+
+  <section class="prep">
+    <div>
+      <h2>Pra reunião render o máximo</h2>
+      <ul>
+        <li><i><svg><use href="#check"/></svg></i><span><b>Separe 40 minutos fora do atendimento.</b> Dá pra entrar pelo celular.</span></li>
+        <li><i><svg><use href="#check"/></svg></i><span><b>Essa reunião vai ser uma verdadeira aula.</b> Por isso é importante chamar quem te ajuda nas decisões: seu sócio, o gestor da sua equipe ou seu cônjuge.</span></li>
+        <li><i><svg><use href="#check"/></svg></i><span><b>Pense no tratamento</b> que você mais quer vender nos próximos 90 dias.</span></li>
+      </ul>
+    </div>
+    <div class="cta">
+      <p>Seu próximo passo é a reunião com os sócios.</p>
+      <div class="bubble">Oi! Quero confirmar minha reunião 👋<small>é só responder assim no WhatsApp</small></div>
+      <small>Pra combinar ou confirmar o horário, responda a mensagem que te enviou este pré-diagnóstico.</small>
+    </div>
+  </section>
+
+  <div class="foot"><span>Pré-diagnóstico feito com dados públicos coletados em {{MES_ANO — ex: setembro de 2026}}.</span><span>Black Sales · confidencial</span></div>
+</section>
+
+<script>
+(function(){
+  // mostra só uma página quando aberto com #p1 / #p2 (usado na exportação em PNG)
+  var h=location.hash.replace('#','');
+  if(h==='p1'||h==='p2'){document.body.classList.add('solo');document.getElementById(h).classList.add('on');}
+  // no celular, encaixa a folha de 900px na largura da tela
+  function fit(){var w=window.innerWidth;document.body.style.zoom=(w<700)?(w/900):'';}
+  fit();window.addEventListener('resize',fit);
+  // pré-flight: marca folha que estourou 1800px
+  window.addEventListener('load',function(){
+    document.querySelectorAll('.page').forEach(function(p){
+      var pr=p.getBoundingClientRect(),cs=getComputedStyle(p),lim=pr.bottom-parseFloat(cs.paddingBottom)+1;
+      var over=[].some.call(p.children,function(el){var r=el.getBoundingClientRect();return r.height>0&&r.bottom>lim;});
+      p.setAttribute('data-overflow',over?'1':'0');
+    });
+  });
+})();
+</script>
+</body>
+</html>
