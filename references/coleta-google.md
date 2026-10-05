@@ -31,6 +31,8 @@ Caso real (Dra. Rafaela, set/2026): no Instagram ela é "Rafaela **Resende**", e
 
 ## 2 · O que medir
 
+- **Endereço do consultório:** o `address` da ficha confirmada. Vai pra linha 📍 do celular "Reposicionado" (a localização sai do nome). Sem ficha, use o endereço do site ou da bio. Sem nenhum, use bairro + cidade da Doctoralia/CatalogoMed. Nunca invente rua.
+
 - **GMB:** existe? Com que nome? Categoria específica ou genérica ("Médico")? Tem site? Nota e nº de avaliações.
 - **Busca pelo nome:** a busca 1 (nome do Instagram) acha a ficha? Se não acha, vira card.
 - **Top 10:** em cada uma das buscas 3, 4 e 5, ela está entre os 10 do Maps? Registre `X/3`. Se der tempo, confira também o orgânico com WebSearch.

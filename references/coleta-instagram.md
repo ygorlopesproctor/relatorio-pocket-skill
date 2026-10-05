@@ -37,6 +37,9 @@ Custo: centavos de dólar. Tempo: ~2 min.
 - **Automação:** quantas legendas pedem palavra-chave ("comente X", "comenta", "digite", "manda X no direct").
 - **Destino do link:** siga o redirecionamento (`curl -s -o NUL -w "%{redirect_url}" <link>`). WhatsApp direto, agregador ou encurtador não guardam contato.
 - **Melhor post:** o de maior engajamento (história pessoal costuma ganhar), mais o reel clínico com mais reproduções.
+- **Mapa de atuação** (entra no `mapa-atuacao.md` da Fase 2): toda área e tratamento citado na bio, nos nomes dos destaques e nas legendas dos 15 posts, com quantas vezes aparece. Some com o site e a ficha Google (Fase 3). É dele que sai o posicionamento amplo do nome.
+- **Título e nome:** como ele se apresenta hoje ("Dra. Rafaela Resende"). O "Dr."/"Dra." e o sobrenome ficam no nome do depois.
+- **Agendamento online:** se a bio, o Linktree ou o site levam a Doctoralia, sistema de agenda ou página de agendar, anote a URL. Ela vira o link do depois.
 
 ## 3 · Imagens (base64 no HTML, nunca URL do CDN)
 

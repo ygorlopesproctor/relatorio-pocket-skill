@@ -12,7 +12,14 @@ Nota única da página 1. Nove itens, quatro grupos (as barras do medidor). Pont
 
 ## Perfil · 20 pts
 
-Rode a rubrica da skill `ig-profile` (`~/.claude/skills/ig-profile/rubric.json`, 12 itens, 100 pts) sobre os dados do scraping e multiplique por 0,20 (arredonde). A mesma análise gera o "Reposicionado" da página 1: nome ≤30 caracteres, bio, rótulo do link, destaques e 3 fixados.
+Rode a rubrica da skill `ig-profile` (`~/.claude/skills/ig-profile/rubric.json`, 12 itens, 100 pts) sobre os dados do scraping e multiplique por 0,20 (arredonde). A mesma análise gera o "Reposicionado" da página 1 (nome, bio, endereço, link, destaques e 3 fixados) com as regras do perfil médico do `SKILL.md`.
+
+**Ajustes da casa ao pontuar a rubrica `ig-profile` em perfil de médico:**
+
+| Item | Nota cheia | Não desconte | Desconte |
+|---|---|---|---|
+| `name_field` (12) | `Dr.`/`Dra.` + nome + posicionamento que cobre o mapa de atuação | nome entre 31 e 64 caracteres (o limite é 64) · falta de cidade | sem título (−4) · sem posicionamento (−6) · posicionamento que deixa áreas do mapa de fora (−3) · especialidade sem RQE (−3) · cidade ocupando o nome (−2) |
+| `link` (8) | agendamento online, ou Linktree com "Agendar consulta" em 1º e até 3 botões, com a bio chamando pro link | Linktree só por ser Linktree | link sem chamada na bio (−2) · menu com 4+ botões (−3) · sem link (−8) |
 
 ## Conteúdo · 20 pts
 

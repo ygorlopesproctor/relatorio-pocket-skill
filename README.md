@@ -50,7 +50,7 @@ references/
   coleta-instagram.md            # Apify perfil + posts, grid, destaques
   coleta-google.md               # Apify Google Places, GMB, site, top 10
   score-presenca.md              # rubrica do score 0–100
-scripts/render.py                # PDF de 2 págs + PNGs + pré-flight (estouro, placeholder, 2 páginas)
+scripts/render.py                # PDF de 2 págs + PNGs + checagem automática (estouro, placeholder, regras do perfil, promessa)
 exemplo/                         # caso pronto (PDF, PNGs, ig-profile.md, score.json)
 ```
 
@@ -58,8 +58,17 @@ exemplo/                         # caso pronto (PDF, PNGs, ig-profile.md, score.
 
 - 2 páginas fixas. Estourou? Corte texto.
 - Score pela rubrica: a cor é sempre vermelha, o número é o real.
+- **Nome do perfil reposicionado:** `Dr.`/`Dra.` + nome + `|` + posicionamento amplo, que cubra tudo o que o médico faz. Sem cidade: a localização vai no campo Endereço (linha 📍). O campo Nome aceita 64 caracteres, não 30.
+- **Link explícito:** o celular mostra o endereço do link (agendamento online ou Linktree), e a bio chama pra ele.
+- **Página 2 com a promessa fixa:** agenda cheia de consultas particulares e mais vendas de procedimentos e tratamentos, com internet, atendimento e comercial, e a secretária treinada.
 - Nada de nome de concorrente, data ou hora da reunião, dia do diagnóstico (só mês e ano) ou case de cliente.
 - Tudo com dado coletado no dia. Sem dado, sem afirmação.
+- Antes de entregar: checagem automática do `render.py` + double check de 12 itens (Fase 7).
+
+## Histórico
+
+- **v2.2 (05/10/2026):** regras do perfil médico (título, posicionamento amplo, endereço, link explícito), mapa de atuação, promessa fixa na página 2, checagem de conteúdo no `render.py` e double check obrigatório. Corrige relatórios que tiravam o "Dra.", punham a cidade no nome e reduziam o médico a uma área só.
+- **v2.1 (28/09/2026):** formato de 2 páginas.
 
 ---
 Material proprietário Black Sales / MadScale. Uso interno da equipe.
